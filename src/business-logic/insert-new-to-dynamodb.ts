@@ -8,10 +8,11 @@ export const insertNewToDynamodb = async <T extends Record<string, unknown>>(
   const table = process.env[`DATA_TABLE`];
   const client = new DynamoDB({});
   const documentClient = DynamoDBDocumentClient.from(client);
+  const finalItem = { ...item, id };
   const command = new PutCommand({
     TableName: table,
     ConditionExpression: "attribute_not_exists(id)",
-    Item: { ...item, id },
+    Item: finalItem,
   });
 
   await documentClient.send(command);

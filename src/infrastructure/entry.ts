@@ -17,13 +17,6 @@ const dataTable = new Table(stack, "my-test-table", {
 
 const makeFunction = (id: string, filename: string) =>
   new NodejsFunction(stack, id, {
-    bundling: {
-      externalModules: [
-        "aws-sdk",
-        "@aws-sdk/client-dynamodb",
-        "@aws-sdk/lib-dynamodb",
-      ],
-    },
     entry: path.join(__dirname, "..", "handlers", filename),
     environment: {
       DATA_TABLE: dataTable.tableName,

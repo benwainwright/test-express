@@ -14,5 +14,5 @@ export const getFromDynamoDb = async (id: string) => {
 
   const response = await documentClient.send(command);
 
-  return response.Item;
+  return response.Item ?? {};
 };

@@ -12,5 +12,5 @@ export const getAllFromDyanmodb = async () => {
 
   const result = await documentClient.send(command);
 
-  return result.Items;
+  return result.Items ?? [];
 };
