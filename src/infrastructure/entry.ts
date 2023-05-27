@@ -1,4 +1,4 @@
-import { App, Stack } from "aws-cdk-lib";
+import { App, CfnOutput, Stack } from "aws-cdk-lib";
 import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -100,3 +100,28 @@ withoutExpressWithId.addMethod(
   new LambdaIntegration(withoutExpressDeleteFunction)
 );
 dataTable.grantWriteData(withoutExpressDeleteFunction);
+
+new CfnOutput(stack, `rest-api-with-express-output`, {
+  exportName: `with-express-url`,
+  value: api.urlForPath(`/with-express`),
+});
+
+new CfnOutput(stack, `with-express-function-output`, {
+  exportName: `with-express-function`,
+  value: withExpressFunction.functionName,
+});
+
+new CfnOutput(stack, `get-with-id-without-express-function-output`, {
+  exportName: `get-with-id-without-express-function`,
+  value: withoutExpressGetIdFunction.functionName,
+});
+
+new CfnOutput(stack, `get-id-with-express-function-output`, {
+  exportName: `get-id-with-express-function`,
+  value: withExpressFunction.functionName,
+});
+
+new CfnOutput(stack, `rest-api-without-express-output`, {
+  exportName: `without-express-url`,
+  value: api.urlForPath(`/without-express-url`),
+});

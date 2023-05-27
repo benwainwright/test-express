@@ -1,21 +1,24 @@
-import autocannon from "autocannon";
 import { forceColdStart } from "./force-cold-start";
 import { doBenchmark } from "./do-benchmark";
-
-const withExpressFunctionName = `my-test-stack-withexpressfunctionA98E5EA0-ZprzmGsAkZRH`;
-const withoutExpressFunctionName = `my-test-stack-withoutexpressgetfunctionD4EFFD4C-QM572fdL9azh`;
-const url = `https://ezjj1ac8p8.execute-api.eu-west-2.amazonaws.com/prod`;
+import fs from "fs/promises";
+import path from "node:path";
 
 const go = async () => {
+  const data = JSON.parse(
+    await fs.readFile(path.join(process.cwd(), "outputs.json"), "utf8")
+  )[`my-test-stack`];
+
   console.log(`Resetting cold starts`);
-  await forceColdStart(withExpressFunctionName);
-  await forceColdStart(withoutExpressFunctionName);
+  await forceColdStart(data.withexpressfunctionoutput);
+  await forceColdStart(data.getidwithexpressfunctionoutput);
 
   console.log(`Running first load test`);
-  await doBenchmark("Without Express", `${url}/without-express`);
+  const withoutExpressurl = data.restapiwithoutexpressoutput;
+  await doBenchmark("Without Express", withoutExpressurl);
 
   console.log(`Running second load test`);
-  await doBenchmark("With Express", `${url}/with-express`);
+  const withExpressUrl = data.restapiwithexpressoutput;
+  await doBenchmark("With Express", withExpressUrl);
 };
 
 go().catch((error) => console.log(error));

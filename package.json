@@ -20,5 +20,9 @@
   "devDependencies": {
     "esbuild": "^0.17.19",
     "prettier": "^2.8.8"
+  },
+  "scripts": {
+    "deploy": "cdk deploy --outputs-file outputs.json",
+    "benchmark": "ts-node src/benchmarking/run-benchmark.ts"
   }
 }
