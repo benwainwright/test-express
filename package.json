@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@aws-sdk/client-lambda": "^3.341.0",
     "@types/autocannon": "^7.9.0",
@@ -11,6 +12,7 @@
     "autocannon": "^7.11.0",
     "aws-cdk": "^2.81.0",
     "aws-cdk-lib": "^2.81.0",
+    "cdk-bundle-analyzer": "^0.1.1",
     "constructs": "^10.2.34",
     "express": "^4.18.2",
     "randomstring": "^1.2.3",
@@ -22,6 +24,8 @@
     "prettier": "^2.8.8"
   },
   "scripts": {
+    "analyse-without-express": "cdk synth --quiet -c analyze=without-express-get-id-function",
+    "analyse-with-express": "cdk synth --quiet -c analyze=with-express-function",
     "deploy": "cdk deploy --outputs-file outputs.json",
     "benchmark": "ts-node src/benchmarking/run-benchmark.ts"
   }

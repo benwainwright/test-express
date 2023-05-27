@@ -1,8 +1,12 @@
-import { App, CfnOutput, Stack } from "aws-cdk-lib";
+import { App, Aspects, CfnOutput, Stack } from "aws-cdk-lib";
 import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+import { NodeJsFunctionBundleAnalyzerAspect } from "cdk-bundle-analyzer";
 import path from "path";
+
+import url from "node:url";
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const app = new App();
 
@@ -15,11 +19,17 @@ const dataTable = new Table(stack, "my-test-table", {
   },
 });
 
+Aspects.of(app).add(new NodeJsFunctionBundleAnalyzerAspect());
+
 const makeFunction = (id: string, filename: string) =>
   new NodejsFunction(stack, id, {
     entry: path.join(__dirname, "..", "handlers", filename),
     environment: {
       DATA_TABLE: dataTable.tableName,
+    },
+    bundling: {
+      mainFields: ["module", "main"],
+      metafile: true,
     },
   });
 

@@ -1,5 +1,5 @@
 {
-  "app": "yarn ts-node src/infrastructure/entry.ts",
+  "app": "yarn ts-node --esm src/infrastructure/entry.ts",
   "watch": {
     "include": ["src"]
   }
