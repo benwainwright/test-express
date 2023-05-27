@@ -7,8 +7,8 @@ import { putHandler } from "./express-handlers/put";
 
 export const app = express();
 
-app.delete("/:id", deleteHandler);
-app.get("/", getHandler);
-app.get("/:id", getFromIdHandler);
-app.post("/", express.json(), postHandler);
-app.put("/:id", express.json(), putHandler);
+app.delete("/with-express/:id", deleteHandler);
+app.get("/with-express/", getHandler);
+app.get("/with-express/:id", getFromIdHandler);
+app.post("/with-express/", express.json(), postHandler);
+app.put("/with-express/:id", express.json(), putHandler);
