@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
-import { deleteFromDynamodb } from "../../business-logic/delete-from-dynamodb";
+import { deleteFromDynamodb } from "../../business-logic/delete-from-dynamodb.js";
 
 export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   // Do not use the non-null assertion in real production code!

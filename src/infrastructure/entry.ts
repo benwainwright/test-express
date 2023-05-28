@@ -116,11 +116,6 @@ new CfnOutput(stack, `rest-api-with-express-output`, {
   value: api.urlForPath(`/with-express`),
 });
 
-new CfnOutput(stack, `with-express-function-output`, {
-  exportName: `with-express-function`,
-  value: withExpressFunction.functionName,
-});
-
 new CfnOutput(stack, `get-with-id-without-express-function-output`, {
   exportName: `get-with-id-without-express-function`,
   value: withoutExpressGetIdFunction.functionName,
@@ -133,5 +128,5 @@ new CfnOutput(stack, `get-id-with-express-function-output`, {
 
 new CfnOutput(stack, `rest-api-without-express-output`, {
   exportName: `without-express-url`,
-  value: api.urlForPath(`/without-express-url`),
+  value: api.urlForPath(`/without-express`),
 });

@@ -1,5 +1,5 @@
 import { Handler } from "express";
-import { deleteFromDynamodb } from "../../business-logic/delete-from-dynamodb";
+import { deleteFromDynamodb } from "../../business-logic/delete-from-dynamodb.js";
 
 export const deleteHandler: Handler = async (request, response) => {
   const { id } = request.params;

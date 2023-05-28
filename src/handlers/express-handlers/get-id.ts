@@ -1,5 +1,5 @@
 import { Handler } from "express";
-import { getFromDynamoDb } from "../../business-logic/get-from-dynamo";
+import { getFromDynamoDb } from "../../business-logic/get-from-dynamo.js";
 
 export const getFromIdHandler: Handler = async (request, response) => {
   const { id } = request.params;

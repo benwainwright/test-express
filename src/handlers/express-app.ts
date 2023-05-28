@@ -1,9 +1,9 @@
 import express from "express";
-import { deleteHandler } from "./express-handlers/delete";
-import { getFromIdHandler } from "./express-handlers/get-id";
-import { getHandler } from "./express-handlers/get";
-import { postHandler } from "./express-handlers/post";
-import { putHandler } from "./express-handlers/put";
+import { deleteHandler } from "./express-handlers/delete.js";
+import { getFromIdHandler } from "./express-handlers/get-id.js";
+import { getHandler } from "./express-handlers/get.js";
+import { postHandler } from "./express-handlers/post.js";
+import { putHandler } from "./express-handlers/put.js";
 
 export const app = express();
 
